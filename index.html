@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      function openUp() {
+        const $opentop = document.querySelector("#opentop");
+        const $top = document.querySelector("#top");
+        const $front = document.querySelector("#front");
+        const $back = document.querySelector("#back");
+        const $letter = document.querySelector("#letter");
+        const $button = document.querySelector("button");
+        const $body = document.body;
+
+        $opentop.beginElement();
+        $top.style.zIndex = 2;
+
+        $top.classList.add("animate");
+        $front.classList.add("animate");
+        $back.classList.add("animate");
+        $button.classList.add("animate");
+        $letter.classList.add("animate");
+        
+        setTimeout(() => {
+          $body.classList.add("opened");
+          document.querySelector("#bgVideo").play();
+        }, 1000);
+      }
+    </script>
+    <style>
+      /* Video Background */
+      body {
+        margin: 0;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      #initialVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+      }
+
+      #bgVideo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        display: none;
+      }
+
+      body.opened {
+        background: rgb(187, 34, 34) !important;
+        transition: background 1s ease-in-out;
+      }
+
+      body.opened #initialVideo {
+        display: none;
+      }
+
+      body.opened #bgVideo {
+        display: block;
+      }
+
+      #envelope {
+        position: absolute;
+        top: calc(50vh - 200px);
+        left: calc(50vw - 150px);
+        width: 300px;
+        height: 300px;
+        z-index: 10;
+      }
+
+      #envelope > * {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: none;
+      }
+
+      #back {
+        display: block;
+        z-index: 0;
+      }
+
+      #front {
+        display: block;
+        z-index: 10;
+      }
+
+      #top {
+        display: block;
+        z-index: 11;
+      }
+
+      #top.animate,
+      #front.animate,
+      #back.animate,
+      #envelope button.animate {
+        opacity: 0;
+        transition: opacity 1s;
+        transition-delay: 1s;
+      }
+
+      #letter {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background-color: rgba(125, 187, 223, 0.101);
+        padding: 5px;
+        z-index: 5;
+        left: 15px;
+        right: 15px;
+        bottom: 5px;
+        top: 105px;
+        box-shadow: 0px 1px 3px 0px rgb(223, 31, 31),
+          0px 1px 2px 0px rgba(2, 203, 92, 0.781);
+        overflow: hidden;
+        font-size: 25px;
+      }
+
+      h1 {
+        padding-top: 12px;
+      }
+
+      p {
+        font-size: 27px;
+        padding: 2px;
+        line-height: 20px;
+      }
+
+      #letter img {
+        background-size: cover;
+      }
+
+      #letter.animate {
+        animation: makebig 2s forwards;
+        animation-delay: 1s;
+      }
+
+      @keyframes makebig {
+        0% {
+          top: 105px;
+          left: 15px;
+          right: 15px;
+          bottom: 5px;
+          font-size: 16px;
+        }
+        33% {
+          top: -100px;
+          left: 15px;
+          right: 15px;
+          bottom: 150px;
+          font-size: 16px;
+        }
+        100% {
+          top: -0px;
+          left: -55px;
+          right: -25px;
+          bottom: -100px;
+          font-size: 24px;
+        }
+      }
+
+      #letter h2 {
+        font-size: inherit;
+      }
+
+      #letter img {
+        height: 50%;
+      }
+
+      #envelope button {
+        display: block;
+        z-index: 15;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        background-color: rgb(253, 0, 8);
+        font-weight: bold;
+        text-align: center;
+        color: rgb(11, 7, 232);
+        cursor: pointer;
+        top: calc(200px - 25px);
+        left: calc(150px - 25px);
+        transition: transform 1s, background-color 1s, color 1s;
+      }
+
+      #envelope button:hover {
+        background-color: rgb(227, 17, 213);
+        transform: scale(1.5);
+        color: rgb(47, 255, 0);
+        transition: transform 1s, background-color 1s, color 1s;
+      }
+
+      .text h1 {
+        color: rgb(255, 3, 3);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+        animation: slideIn 1s forwards;
+        z-index: 5;
+        position: relative;
+      }
+
+      .animated-text {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeSlide 2s ease-in-out forwards;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #d900ff;
+        font-weight: 900;
+        display: inline-block;
+      }
+
+      @keyframes fadeSlide {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      .imp {
+        color: #f3fe2e;
+        font-weight: 900;
+        text-shadow: 1px 1px 2px #012304;
+      }
+
+      .highlight-hey {
+        color: #00ff11;
+        font-weight: 900;
+      }
+
+      /* ========== ULTIMATE RAINBOW BOX BUTTON ========== */
+      .rainbow-link {
+        display: inline-block;
+        margin-top: 15px;
+      }
+
+      .rainbow-link a {
+        all: unset;
+        display: inline-block;
+        padding: 12px 24px;
+        background: linear-gradient(45deg, #000, #111);
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 18px;
+        text-decoration: none;
+        position: relative;
+        cursor: pointer;
+        
+        /* RAINBOW TEXT */
+        background-image: linear-gradient(90deg,
+          #fff, #00ffff, #0066ff, #9900ff, #ff69b4, 
+          #ff0000, #ffff00, #00ff00, #fff
+        );
+        background-size: 800% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease, background-position 3s ease;
+        
+        /* GLOW EFFECT */
+        box-shadow: 
+          0 4px 15px rgba(236, 2, 253, 0.903),
+          inset 0 0 10px rgba(255,255,255,0.1);
+      }
+
+    .rainbow-link a:hover {
+  background-position: 0% 0;
+  
+  /* MULTI-COLOR RAINBOW TEXT */
+  background-image: linear-gradient(90deg,
+    #FF0000
+  ) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  
+  transform: translateY(-2px);
+  box-shadow: 
+    0 2px 25px rgba(255,0,255,0.4),
+   
+  background: linear-gradient(45deg, #111, #222);
+}
+    </style>
+  </head>
+  <body>
+    <video id="initialVideo" muted loop playsinline autoplay>
+      <source src="B.mp4" type="video/mp4">
+    </video>
+
+    <video id="bgVideo" muted loop playsinline>
+      <source src="A.mp4" type="video/mp4">
+    </video>
+
+    <div class="text">
+      <h1>"For a better experience, plz use a PC & earbuds."</h1> 
+    </div>
+    
+    <div id="envelope">
+      <div id="back">
+        <svg xmlns="http://www.w3.org/2000/svg" height="300" width="300">
+          <polygon points="0,100 300,100 300,300 0,300" style="fill: #4a274a; stroke: none; stroke-width: 0"/>
+        </svg>
+      </div>
+      
+      <div id="front">
+        <svg xmlns="http://www.w3.org/2000/svg" height="300" width="300">
+          <polygon points="0,100 150,200 300,100 300,300 0,300" style="fill: #2ad0d0; stroke: #ff0000; stroke-width: 7"/>
+        </svg>
+      </div>
+      
+      <div id="top">
+        <svg xmlns="http://www.w3.org/2000/svg" height="300" width="300">
+          <polygon points="0,100 150,200 300,100" style="fill: #0abef0; stroke: #acb434; stroke-width: 5">
+            <animate id="opentop" attributeName="points" dur="0.5s" fill="freeze" begin="indefinite" from="0,100 150,200 300,100" to="0,100 150,0 300,100"/>
+          </polygon>
+        </svg>
+      </div>
+
+      <div id="letter">
+        <div id="letter-content">
+          <p class="animated-text">
+            <span class="highlight-hey">Hey,</span><br>
+            message has been uploaded now. If there's any <span class="imp">wrong word</span>, <span class="imp">photo</span>, or <span class="imp">video</span> by mistake, I'm really sorry. I can't change it right now. There's also an <span class="imp">audio</span> with the message — you can listen to it directly instead of reading if you want. Some words in the audio might sound a bit harsh, but please make sure to listen to the <span class="imp">last part</span>. And yes, please don't <span class="imp">file any complaint</span>.
+            <br><br>
+            
+            <!-- 🌈 ULTIMATE RAINBOW BOX BUTTON -->
+            <div class="rainbow-link">
+              <a href="https://75rishi.github.io/r4/" target="_blank">Click Here</a>
+            </div>
+          </p>
+        </div>
+      </div>
+      
+      <button onclick="openUp()">Click Here</button>
+    </div>
+  </body>
+</html>
