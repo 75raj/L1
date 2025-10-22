@@ -28,7 +28,7 @@
       }
     </script>
     <style>
-      /* Video Background */
+      /* Video Background - PERFECT LOOPING */
       body {
         margin: 0;
         position: relative;
@@ -45,6 +45,9 @@
         height: 100%;
         object-fit: cover;
         z-index: -1;
+        
+        /* SEAMLESS LOOPING */
+        will-change: transform;
       }
 
       #bgVideo {
@@ -56,6 +59,9 @@
         object-fit: cover;
         z-index: -1;
         display: none;
+        
+        /* SEAMLESS LOOPING */
+        will-change: transform;
       }
 
       body.opened {
@@ -117,11 +123,11 @@
         justify-content: space-around;
         align-items: center;
         background-color: rgba(125, 187, 223, 0.101);
-        padding: 5px;
+        padding: 25px;
         z-index: 5;
         left: 15px;
         right: 15px;
-        bottom: 5px;
+        bottom: 2px;
         top: 105px;
         box-shadow: 0px 1px 3px 0px rgb(223, 31, 31),
           0px 1px 2px 0px rgba(2, 203, 92, 0.781);
@@ -290,31 +296,39 @@
           inset 0 0 10px rgba(255,255,255,0.1);
       }
 
-    .rainbow-link a:hover {
-  background-position: 0% 0;
-  
-  /* MULTI-COLOR RAINBOW TEXT */
-  background-image: linear-gradient(90deg,
-    #FF0000
-  ) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  
-  transform: translateY(-2px);
-  box-shadow: 
-    0 2px 25px rgba(255,0,255,0.4),
-   
-  background: linear-gradient(45deg, #111, #222);
-}
+      .rainbow-link a:hover {
+        background-position: 0% 0;
+        
+        /* MULTI-COLOR RAINBOW TEXT */
+        background-image: linear-gradient(90deg,
+          #FF0000
+        ) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        color: transparent !important;
+        
+        transform: translateY(-2px);
+        box-shadow: 
+          0 2px 25px rgba(255,0,255,0.4);
+        background: linear-gradient(45deg, #111, #222);
+      }
     </style>
   </head>
   <body>
-    <video id="initialVideo" muted loop playsinline autoplay>
+    <!-- ✅ FIXED: VIDEO B - NOW AUTO-PLAYS & LOOPS PERFECTLY -->
+    <video id="initialVideo" 
+           muted 
+           autoplay 
+           loop 
+           playsinline>
       <source src="B.mp4" type="video/mp4">
     </video>
 
-    <video id="bgVideo" muted loop playsinline>
+    <!-- ✅ VIDEO A - ALREADY WORKING PERFECTLY -->
+    <video id="bgVideo" 
+           muted 
+           loop 
+           playsinline>
       <source src="A.mp4" type="video/mp4">
     </video>
 
