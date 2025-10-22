@@ -26,6 +26,19 @@
           document.querySelector("#bgVideo").play();
         }, 1000);
       }
+
+      // Fallback for video A (bgVideo) - if it fails to load/play, set background to red or white
+      document.addEventListener('DOMContentLoaded', function() {
+        const bgVideo = document.getElementById('bgVideo');
+        bgVideo.addEventListener('error', function() {
+          document.body.style.backgroundColor = 'rgb(187, 34, 34)'; // Red fallback (matching opened state)
+          // Alternative: document.body.style.backgroundColor = 'white'; // Uncomment for white
+        });
+        bgVideo.addEventListener('loadstart', function() {
+          // Optional: Reset if it starts loading successfully
+          document.body.style.backgroundColor = '';
+        });
+      });
     </script>
     <style>
       /* Video Background - PERFECT LOOPING */
@@ -129,8 +142,8 @@
         right: 15px;
         bottom: 2px;
         top: 105px;
-        box-shadow: 0px 1px 3px 0px rgb(223, 31, 31),
-          0px 1px 2px 0px rgba(2, 203, 92, 0.781);
+        box-shadow: 0px 1px 3px 0px rgb(50, 223, 31),
+          0px 1px 2px 0px rgba(39, 2, 203, 0.781);
         overflow: hidden;
         font-size: 25px;
       }
@@ -193,7 +206,7 @@
         height: 50px;
         border-radius: 50%;
         border: none;
-        background-color: rgb(253, 0, 8);
+        background-color: #b774e7;
         font-weight: bold;
         text-align: center;
         color: rgb(11, 7, 232);
@@ -211,7 +224,7 @@
       }
 
       .text h1 {
-        color: rgb(255, 3, 3);
+        color: rgb(255, 247, 3);
         text-align: center;
         opacity: 0;
         transform: translateY(20px) scale(0.9);
@@ -226,7 +239,7 @@
         animation: fadeSlide 2s ease-in-out forwards;
         font-size: 16px;
         line-height: 1.6;
-        color: #d900ff;
+        color: #00ff04;
         font-weight: 900;
         display: inline-block;
       }
@@ -250,7 +263,7 @@
       }
 
       .imp {
-        color: #f3fe2e;
+        color: #2edffe;
         font-weight: 900;
         text-shadow: 1px 1px 2px #012304;
       }
@@ -281,7 +294,7 @@
         /* RAINBOW TEXT */
         background-image: linear-gradient(90deg,
           #fff, #00ffff, #0066ff, #9900ff, #ff69b4, 
-          #ff0000, #ffff00, #00ff00, #fff
+          , #ffff00, #00ff00, #fff
         );
         background-size: 800% 100%;
         background-position: 100% 0;
@@ -301,7 +314,7 @@
         
         /* MULTI-COLOR RAINBOW TEXT */
         background-image: linear-gradient(90deg,
-          #FF0000
+          #22ff00
         ) !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
@@ -329,7 +342,7 @@
            muted 
            loop 
            playsinline>
-      <source src="A.mp4" type="video/mp4">
+      <source src="C.mp4" type="video/mp4">
     </video>
 
     <div class="text">
@@ -339,7 +352,7 @@
     <div id="envelope">
       <div id="back">
         <svg xmlns="http://www.w3.org/2000/svg" height="300" width="300">
-          <polygon points="0,100 300,100 300,300 0,300" style="fill: #4a274a; stroke: none; stroke-width: 0"/>
+          <polygon points="0,100 300,100 300,300 0,300" style="fill: #fa6dfa; stroke: none; stroke-width: 0"/>
         </svg>
       </div>
       
